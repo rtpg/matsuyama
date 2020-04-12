@@ -1,0 +1,5 @@
+fpga/fpga.cache
+.Xil
+fpga/fpga.hw
+fpga/fpga.runs
+fpga/fpga.xpr
