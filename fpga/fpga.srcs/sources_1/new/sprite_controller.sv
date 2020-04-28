@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "types.sv"
 
 /**
  * This module takes in x,y coords and provides a stream of sprite pixels
@@ -9,9 +10,7 @@ module sprite_controller(
    input [12:0]  y,
    // x,y coordinates of the sprite data
    input sprite  sprite_data,
-			 
-   output [11:0] rbg,
-   output 	 visible
+   output rbga rbga
 			 );
    
    
@@ -20,6 +19,7 @@ module sprite_controller(
    assign sp_x = sprite_data[12:0];
    assign sp_y = sprite_data[25:13];
 
+   wire visible;
    assign visible = (
 		     ((sp_x - 8) < x) & (x <= sp_x)
 		     ) & 
@@ -27,8 +27,7 @@ module sprite_controller(
 		     ((sp_y - 8) < y) & (y <= sp_y)
 		     );
 
-
    localparam ALL_ONE = 12'b111111111111;
-   assign rbg = visible?ALL_ONE:0;
+   assign rbga = '{visible?ALL_ONE:0, visible};
    
 endmodule
