@@ -6,9 +6,9 @@
 module sprite_box
 #(parameter SPRCOUNT = 3)
 (
- input [12:0] x,
- input [12:0] y,
- input 	      sprite [SPRCOUNT-1:0] sprites,
+ input wire [12:0] x,
+ input wire [12:0] y,
+ input wire   sprite [SPRCOUNT-1:0] sprites,
  output       rbga out_rbga
     );
 
@@ -34,6 +34,6 @@ module sprite_box
 	    rbga_overlay(mixed_signals[i], sprite_rbga[i+1], mixed_signals[i+1]);
       end
    endgenerate
-   assign out_rgba = mixed_signals[SPRCOUNT-1];
+   assign out_rbga = mixed_signals[SPRCOUNT-1];
 
 endmodule

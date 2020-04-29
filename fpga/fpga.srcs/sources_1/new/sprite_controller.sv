@@ -6,8 +6,8 @@
  * (at least while they are visible)
  **/
 module sprite_controller(
-   input [12:0]  x,
-   input [12:0]  y,
+   input wire [12:0]  x,
+   input wire [12:0]  y,
    // x,y coordinates of the sprite data
    input sprite  sprite_data,
    output rbga rbga

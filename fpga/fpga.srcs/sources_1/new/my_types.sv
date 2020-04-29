@@ -1,3 +1,4 @@
+`default_nettype none
 `ifndef MY_TYPES_SV
 `define MY_TYPES_SV
 /**

@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+`include "my_types.sv"
 
 /**
  * A demo of our VGA controller
@@ -10,18 +10,19 @@
 module vga_demo
 #(parameter SPRCOUNT = 3)
 (
-    input 	 clk_100mhz,
-    output [3:0] vgaRed,
-    output [3:0] vgaBlue,
-    output [3:0] vgaGreen,
-    output 	 Hsync,
-    output 	 Vsync
+    input  bit clk_100mhz,
+    output logic [3:0] vgaRed,
+    output logic [3:0] vgaBlue,
+    output logic [3:0] vgaGreen,
+    output logic Hsync,
+    output logic Vsync
 );
 
    wire [12:0] pix_x;
    wire [12:0] pix_y;
    wire        active;
 
+   wire clk_100hz, clk_25hz;
    extra_clocks clks(clk_100mhz, clk_100hz, clk_25hz);
  
    // we first wire up our controller to generate the right hsync and vsyncs
@@ -71,9 +72,10 @@ endmodule
 
 module logic_box
 #(parameter SPRCOUNT = 3)
-   (input clk_25hz,
+   (input bit clk_25hz,
     output sprite [SPRCOUNT-1:0] sprites);
   
+   genvar i;
    // sprite logic: just bounce around a bit aimlessly
    // updating the logic at 100 times per second
    initial begin
