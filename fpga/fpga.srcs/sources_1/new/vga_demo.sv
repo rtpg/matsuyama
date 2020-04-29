@@ -79,7 +79,8 @@ module logic_box
    initial begin
       foreach(sprites[i]) begin
          sprites[i].x = 10 + 10*i;
-	 sprites[i].y = 30 + 20*i;
+	     sprites[i].y = 30 + 20*i;
+	     sprites[i].tile_idx = i;
       end
    end
    always @(posedge clk_25hz) begin
