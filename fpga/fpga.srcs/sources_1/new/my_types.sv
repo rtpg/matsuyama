@@ -1,3 +1,5 @@
+`ifndef MY_TYPES_SV
+`define MY_TYPES_SV
 /**
  * type definitions
  **/
@@ -8,9 +10,9 @@ typedef struct packed {
 } sprite;
 
 typedef struct packed {
-  logic[2:0] r;
-  logic[2:0] b;
-  logic[2:0] g;
+  logic[3:0] r;
+  logic[3:0] b;
+  logic[3:0] g;
 } rbg;
 
 typedef struct packed {
@@ -22,3 +24,4 @@ module my_types(
 
     );
 endmodule
+`endif

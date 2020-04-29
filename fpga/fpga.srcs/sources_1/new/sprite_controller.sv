@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-`include "types.sv"
+`include "my_types.sv"
 
 /**
  * This module takes in x,y coords and provides a stream of sprite pixels
@@ -16,8 +16,8 @@ module sprite_controller(
    
    wire [12:0] 	 sp_x, sp_y;
 
-   assign sp_x = sprite_data[12:0];
-   assign sp_y = sprite_data[25:13];
+   assign sp_x = sprite_data.x;
+   assign sp_y = sprite_data.y;
 
    wire visible;
    assign visible = (
