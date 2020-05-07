@@ -13,3 +13,10 @@ IDEAS:
  - figuring out how to wire up a controller 
 
 
+Links People have given me:
+ - [picorv32](https://github.com/cliffordwolf/picorv32), softcore I can use for the CPU
+ - [vunit](https://vunit.github.io/) Verilog equivalent of pytest
+ - [cocotb](https://github.com/cocotb/cocotb) another testing suite
+ - [nMigen](https://github.com/m-labs/nmigen) a DSL on top of verilog
+ - [symbiflow](https://github.com/antmicro/symbiflow-examples) examples
+ - [MiSTer](https://github.com/MiSTer-devel/Main_MiSTer/wiki)  

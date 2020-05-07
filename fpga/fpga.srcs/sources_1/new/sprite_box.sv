@@ -15,7 +15,7 @@ module sprite_box
    rbga [SPRCOUNT-1:0] sprite_rbga;
    
 `define SPR(IDX) \
-   sprite_controller spr_ctrl_``IDX``(.x(x), .y(y), .rbga(sprite_rbga[IDX]), .sprite_data(sprites[IDX]));
+   sprite_controller spr_ctrl_``IDX``(.x(x), .y(y), .out_rbga(sprite_rbga[IDX]), .sprite_data(sprites[IDX]));
 
    genvar i;
    

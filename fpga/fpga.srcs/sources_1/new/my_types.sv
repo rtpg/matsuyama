@@ -39,7 +39,7 @@ typedef struct packed {
 typedef struct packed {
    tile_img [127:0] tiles;
    // TODO add pallette data
-} gfx_data;
+} gfx_daa;
 
 
 module my_types(
