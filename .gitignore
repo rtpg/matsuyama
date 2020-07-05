@@ -3,3 +3,5 @@ fpga/fpga.cache
 fpga/fpga.hw
 fpga/fpga.runs
 fpga/fpga.xpr
+*.pycache
+*.pyc
