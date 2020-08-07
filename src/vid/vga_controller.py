@@ -1,5 +1,7 @@
 from nmigen import *
 from nmigen.cli import *
+from contextlib import contextmanager
+
 import math as math
 
 class ClockDivider(Elaboratable):
@@ -46,6 +48,32 @@ class ClockDivider(Elaboratable):
             m.d.sync += self.prev_clock_state.eq(self.in_clock)
 
         return m
+
+
+@contextmanager
+def posedge(m, signal):
+    """
+    Run the inner block whenever the incoming signal goes from 0 to 1
+    """
+    prev_signal_state = Signal()
+    # run the block within that change
+    with m.If((prev_signal_state == 0) and (signal == 1)):
+        yield
+    # also synchronously set the previous signal to previous value
+    m.d.sync += [prev_signal_state.eq(signal)]
+
+
+class VgaCtrl(Elaboratable):
+
+    def __init__(self):
+        self.current_x = Signal(reset=0, shape=13)
+        self.current_y = Signal(reset=0, shape=13)
+        self.active = Signal()
+        self.h_sync = Signal()
+        self.v_sync = Signal()
+
+    def elaborate(self, platform):
+        pass
 
 if __name__ == "__main__":
     clock = ClockDivider(divisor=4, use_external_clock=False)
