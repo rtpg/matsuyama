@@ -1,6 +1,8 @@
-To set up the Vivado project, run `generate_vivado.tcl`
+To set up the Vivado project, you can run `generate_vivado.tcl` (in the Vivado interface before opening a project there's a "run script" option in tools, you can use that)
 
 To export the new setup, in vivado run `write_project_tcl generate_vivado.tcl`
+
+Make sure to install the [Basys drivers](https://reference.digilentinc.com/vivado/installing-vivado/start) too.
 
 TODOS:
  - get the graphics data into the machine
