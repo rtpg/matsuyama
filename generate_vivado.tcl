@@ -39,7 +39,7 @@
 #*****************************************************************************************
 
 # Set the reference directory for source file relative paths (by default the value is script directory path)
-set origin_dir "."
+set origin_dir "/home/rtpg/proj/matsuyama"
 
 # Use origin directory path location variable, if specified in the tcl shell
 if { [info exists ::origin_dir_loc] } {
@@ -109,8 +109,8 @@ set orig_proj_dir "[file normalize "$origin_dir/fpga"]"
 create_project ${_xil_proj_name_} ./${_xil_proj_name_} -part xc7a35tcpg236-1
 
 # Set the directory path for the new project
-set proj_dir [get_property directory [current_project]]
-
+# set proj_dir [get_property directory [current_project]]
+set proj_dir "/home/rtpg/proj/matsuyama"
 # Set project properties
 set obj [current_project]
 set_property -name "board_part" -value "digilentinc.com:basys3:part0:1.1" -objects $obj
