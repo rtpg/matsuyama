@@ -11,6 +11,7 @@ module vga_demo
 #(parameter SPRCOUNT = 3)
 (
     input  bit clk_100mhz,
+    input bit [10:0] sw,
     output logic [3:0] vgaRed,
     output logic [3:0] vgaBlue,
     output logic [3:0] vgaGreen,
@@ -36,18 +37,18 @@ module vga_demo
    
    sprite [SPRCOUNT-1:0] sprites;
    // actually have our sprite logic
-   logic_box(clk_25hz, sprites);
+   logic_box(clk_25hz, sw[1], sprites);
    
    // sprite display
    rbga sprite_rbga;
-   sprite_box(.x(pix_x), .y(pix_y), .sprites(sprites), .out_rbga(sprite_rbga));
+   sprite_box sprite_box_drawer(.x(pix_x), .y(pix_y), .sprites(sprites), .out_rbga(sprite_rbga));
    // draw background
    rbga bg_rbga;
    bg_box bg(.x(pix_x), .y(pix_y), .out_rbga(bg_rbga));
    
    // also get a line
    rbga h_line;
-   h_line_at_200(.x(pix_x), .y(pix_y), .rbga(h_line)); 
+   h_line_at_200 line(.x(pix_x), .y(pix_y), .rbga(h_line));
    // mix our signals together
    rbga final_rbga;
 
@@ -73,6 +74,7 @@ endmodule
 module logic_box
 #(parameter SPRCOUNT = 3)
    (input bit clk_25hz,
+    input bit paused,
     output sprite [SPRCOUNT-1:0] sprites);
   
    genvar i;
@@ -86,10 +88,12 @@ module logic_box
       end
    end
    always @(posedge clk_25hz) begin
-   foreach(sprites[i]) begin
-	 sprites[i].x = (sprites[i].x >= 640 - 16)? 0: sprites[i].x + 1;
-	 sprites[i].y = (sprites[i].y >= 480 - 16)? 0: sprites[i].y + 1;
-   end
+       if (!paused) begin
+           foreach(sprites[i]) begin
+             sprites[i].x = (sprites[i].x >= 640 - 16)? 0: sprites[i].x + 1;
+             sprites[i].y = (sprites[i].y >= 480 - 16)? 0: sprites[i].y + 1;
+           end
+       end
    end
   endmodule
 /**

@@ -36,6 +36,5 @@ module sprite_controller(
    rbga gfx_rbga;
    gfx_data(sprite_data.tile_idx, tile_x, tile_y, gfx_rbga);
    localparam ALL_ONE = 12'b111111111111;
-   assign out_rbga = '{visible?ALL_ONE:0, gfx_rbga.rbg};
-   
+   assign out_rbga = '{gfx_rbga.rbg, visible?1:0};
 endmodule
